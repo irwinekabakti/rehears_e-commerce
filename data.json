@@ -46,7 +46,7 @@
       "weight": 1200,
       "name": "White Onion",
       "category": "Fresh Veggie",
-      "imageUrl": "/products/white_onion.png",
+      "imageUrl": "/products/white-onion.png",
       "metadata": {
         "unit": "g",
         "weight": 100,
@@ -114,7 +114,7 @@
       "weight": 500,
       "name": "Red Chili Pepper",
       "category": "Spicy",
-      "imageUrl": "/products/red_chili_pepper.png",
+      "imageUrl": "/products/asparagus.png",
       "metadata": {
         "unit": "g",
         "weight": 100,

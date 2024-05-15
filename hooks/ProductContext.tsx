@@ -19,7 +19,7 @@ interface ProductContextType extends Array<Product> {}
 const ProductContext = createContext<ProductContextType>([]);
 
 export const ProductProvider = ({ children }: ProductProviderProps) => {
-  const [allProduct, setAllProduct] = useState<any[]>([]);
+  const [allProduct, setAllProduct] = useState<Product[]>([]);
 
   const getAPI = `${config.BASE_URL}${config.endpoints.products}`;
 
