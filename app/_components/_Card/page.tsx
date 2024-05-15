@@ -1,29 +1,12 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React from "react";
 import Image from "next/image";
+import { useProductContext } from "@/hooks/ProductContext";
 import { Product } from "@/types/product";
 
 const Card: React.FC = () => {
-  const [allProduct, setAllProduct] = useState<Product[]>([]);
-
-  const getAPI = `http://localhost:8080/products`;
-
-  const fetchData = () => {
-    fetch(getAPI)
-      .then((res) => res.json())
-      .then((data) => {
-        setAllProduct(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  console.log(allProduct, "<==");
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const allProduct = useProductContext() as Product[];
 
   return (
     <div className="flex">

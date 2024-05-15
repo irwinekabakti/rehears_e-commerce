@@ -1,9 +1,15 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
 import { BsSortAlphaUpAlt, BsSortAlphaDownAlt } from "react-icons/bs";
+import { useProduct } from "@/hooks/useProduct";
 
 const Category: React.FC = () => {
+  const { allProduct, sortProductsAscending, sortProductsDescending } =
+    useProduct();
+
   return (
     <>
       <nav className="flex sm:grid sm:grid-cols-1 md:grid-cols-2 md:items-center justify-around md:justify-between">
@@ -36,7 +42,14 @@ const Category: React.FC = () => {
           </li>
         </ul>
         <div className="text-center hidden md:flex md:justify-start ms-12 gap-4">
-          <BsSortAlphaDownAlt className="cursor-pointer" />
+          <BsSortAlphaDownAlt
+            className="cursor-pointer"
+            onClick={sortProductsAscending}
+          />
+          {/* <BsSortAlphaUpAlt
+            className="cursor-pointer"
+            onClick={sortProductsDescending}
+          /> */}
           <IoSearch className="cursor-pointer" />
         </div>
       </div>
