@@ -12,7 +12,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <main className="home">
+    <main className="home lg:mx-6">
       <Category
         selectedCategory={selectedCategory}
         onCategorySelect={handleCategorySelect}
