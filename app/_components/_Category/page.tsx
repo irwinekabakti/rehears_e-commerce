@@ -1,20 +1,26 @@
 "use client";
-
+// Category.tsx
 import React from "react";
-import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
-import { BsSortAlphaUpAlt, BsSortAlphaDownAlt } from "react-icons/bs";
-import { useProduct } from "@/hooks/useProduct";
+import { BsSortAlphaDownAlt } from "react-icons/bs";
+import useProduct from "@/hooks/useProduct";
 
-const Category: React.FC = () => {
-  const { allProduct, sortProductsAscending, sortProductsDescending } =
-    useProduct();
+interface CategoryProps {
+  selectedCategory: string | null;
+  onCategorySelect: (category: string | null) => void;
+}
+
+const Category: React.FC<CategoryProps> = ({
+  selectedCategory,
+  onCategorySelect,
+}) => {
+  const { categories } = useProduct();
 
   return (
     <>
       <nav className="flex sm:grid sm:grid-cols-1 md:grid-cols-2 md:items-center justify-around md:justify-between">
         <div className="py-4 flex justify-center">
-          <h1 className="text-2xl cursor-pointer">Vegetables</h1>
+          <h1 className="text-2xl cursor-pointer">Categories</h1>
         </div>
 
         <div className="pt-6 text-center md:gap-4 flex md:hidden">
@@ -24,32 +30,31 @@ const Category: React.FC = () => {
       </nav>
 
       <div className="flex sm:grid sm:grid-cols-1 md:grid-cols-2 md:items-center justify-around py-4">
-        <ul className="flex justify-center gap-4 md:gap-2 my-auto">
-          <li className="mx-auto md:mx-4">
-            <Link href="/">All</Link>
-          </li>
-          <li className="mx-auto md:mx-4">
-            <Link href="/">Spicy</Link>
-          </li>
-          <li className="mx-auto md:mx-4">
-            <Link href="/">Dressings</Link>
-          </li>
-          <li className="mx-auto md:mx-4">
-            <Link href="/">Sweets</Link>
-          </li>
-          <li className="mx-auto md:mx-4">
-            <Link href="/">Roots</Link>
-          </li>
-        </ul>
+        <div className="flex flex-wrap gap-2">
+          <button
+            className={`px-3 py-1 rounded ${
+              selectedCategory === null
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200"
+            }`}
+            onClick={() => onCategorySelect(null)}>
+            All
+          </button>
+          {categories.map((category) => (
+            <button
+              key={category}
+              className={`px-3 py-1 rounded ${
+                selectedCategory === category
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200"
+              }`}
+              onClick={() => onCategorySelect(category)}>
+              {category}
+            </button>
+          ))}
+        </div>
         <div className="text-center hidden md:flex md:justify-start ms-12 gap-4">
-          <BsSortAlphaDownAlt
-            className="cursor-pointer"
-            onClick={sortProductsAscending}
-          />
-          {/* <BsSortAlphaUpAlt
-            className="cursor-pointer"
-            onClick={sortProductsDescending}
-          /> */}
+          <BsSortAlphaDownAlt className="cursor-pointer" />
           <IoSearch className="cursor-pointer" />
         </div>
       </div>
